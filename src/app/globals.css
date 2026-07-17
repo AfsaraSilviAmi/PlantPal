@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
+
+@theme {
+  --color-primary-dark: #1A4329;
+  --color-primary-green: #59B76A;
+  --color-background-cream: #F9F6EE;
+  --color-accent-orange: #D07D48;
+}
