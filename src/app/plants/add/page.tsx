@@ -39,75 +39,76 @@ export default function AddPlantPage() {
     );
   }
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  console.log("Step 1");
+    console.log("Step 1");
 
-  const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
 
-  console.log("Step 2");
+    console.log("Step 2");
 
-  const data = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries());
 
-  console.log("Step 3", data);
+    console.log("Step 3", data);
 
-  const payload = {
-    title: data.title as string,
-    scientificName: data.scientificName as string,
-    category: data.category as string,
-    difficulty: data.difficulty as string,
-    wateringFrequency: data.wateringFrequency as string,
-    sunlight: data.sunlight as string,
-    petFriendly: data.petFriendly === "yes",
-    indoor: data.indoor === "yes",
-    image: data.image as string,
-    shortDescription: data.shortDescription as string,
-    description: data.description as string,
-    createdBy: session?.user.id,
-    createdByEmail: session?.user.email,
-  };
+    const payload = {
+      title: data.title as string,
+      scientificName: data.scientificName as string,
+      category: data.category as string,
+      difficulty: data.difficulty as string,
+      wateringFrequency: data.wateringFrequency as string,
+      sunlight: data.sunlight as string,
+      petFriendly: data.petFriendly === "yes",
+      indoor: data.indoor === "yes",
+      price: Number(data.price),
+      image: data.image as string,
+      shortDescription: data.shortDescription as string,
+      description: data.description as string,
+      createdBy: session?.user.id,
+      createdByEmail: session?.user.email,
+    };
 
-  console.log("Step 4", payload);
+    console.log("Step 4", payload);
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  try {
-    console.log("Step 5");
+    try {
+      console.log("Step 5");
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/plants`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/plants`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      console.log("Step 6", response.status);
+
+      const result = await response.json();
+
+      console.log("Step 7", result);
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to add plant");
       }
-    );
 
-    console.log("Step 6", response.status);
+      toast.success("Plant added successfully!");
 
-    const result = await response.json();
+      formRef.current?.reset();
 
-    console.log("Step 7", result);
-
-    if (!response.ok) {
-      throw new Error(result.message || "Failed to add plant");
+      router.push("/explore");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add plant.");
+    } finally {
+      setIsLoading(false);
     }
-
-    toast.success("Plant added successfully!");
-
-    formRef.current?.reset();
-
-    router.push("/explore");
-  } catch (error) {
-    console.error(error);
-    toast.error("Failed to add plant.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   const categories = ["Indoor", "Outdoor", "Succulent", "Flowering", "Herb", "Vegetable"];
   const difficulties = ["Easy", "Medium", "Hard"];
@@ -308,6 +309,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               <FieldError />
             </RadioGroup>
           </div>
+          <TextField
+            isRequired
+            name="price"
+            type="number"
+          >
+            <Label>Price ($)</Label>
+
+            <Input placeholder="25" />
+
+            <FieldError />
+          </TextField>
 
           {/* Image URL */}
           <TextField
