@@ -53,7 +53,7 @@ export function PlantToolbar({
           }}
         >
           <Select.Trigger className="bg-gray-50 border border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors shadow-none h-10">
-            <Select.Value placeholder="Category" />
+            <Select.Value />
           </Select.Trigger>
           <Select.Popover>
             <ListBox>
@@ -75,7 +75,7 @@ export function PlantToolbar({
           }}
         >
           <Select.Trigger className="bg-gray-50 border border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors shadow-none h-10">
-            <Select.Value placeholder="Difficulty" />
+            <Select.Value />
           </Select.Trigger>
           <Select.Popover>
             <ListBox>
@@ -97,7 +97,7 @@ export function PlantToolbar({
           }}
         >
           <Select.Trigger className="bg-gray-50 border border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors shadow-none h-10">
-            <Select.Value placeholder="Sort By" />
+            <Select.Value />
           </Select.Trigger>
           <Select.Popover>
             <ListBox>

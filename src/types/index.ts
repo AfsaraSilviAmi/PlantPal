@@ -9,8 +9,11 @@ export interface Plant {
   petFriendly: boolean;
   indoor: boolean;
   price?: number;
+  rating?: number;
   image?: string;
   shortDescription: string;
   description: string;
   createdAt: string;
+  createdBy: string;
+  createdByEmail: string;
 }

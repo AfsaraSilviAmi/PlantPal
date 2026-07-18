@@ -62,6 +62,7 @@ export default function AddPlantPage() {
       petFriendly: data.petFriendly === "yes",
       indoor: data.indoor === "yes",
       price: Number(data.price),
+      rating: Number(data.rating),
       image: data.image as string,
       shortDescription: data.shortDescription as string,
       description: data.description as string,
@@ -309,17 +310,48 @@ export default function AddPlantPage() {
               <FieldError />
             </RadioGroup>
           </div>
-          <TextField
-            isRequired
-            name="price"
-            type="number"
-          >
-            <Label>Price ($)</Label>
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+  <TextField
+    isRequired
+    name="price"
+    type="number"
+  >
+    <Label>Price ($)</Label>
 
-            <Input placeholder="25" />
+    <Input
+      placeholder="25"
+      min={0}
+    />
 
-            <FieldError />
-          </TextField>
+    <FieldError />
+  </TextField>
+
+  <TextField
+    isRequired
+    name="rating"
+    type="number"
+    validate={(value) => {
+      const rating = Number(value);
+
+      if (rating < 1 || rating > 5) {
+        return "Rating must be between 1 and 5";
+      }
+
+      return null;
+    }}
+  >
+    <Label>Rating (1 - 5)</Label>
+
+    <Input
+      placeholder="4.5"
+      min={1}
+      max={5}
+      step="0.1"
+    />
+
+    <FieldError />
+  </TextField>
+</div>
 
           {/* Image URL */}
           <TextField
@@ -381,7 +413,7 @@ export default function AddPlantPage() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full sm:w-2/3 bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-lg transition-all"
+              className="w-full sm:w-2/3 bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md transition-all"
               size="lg"
               radius="md"
             >
@@ -390,7 +422,7 @@ export default function AddPlantPage() {
             <Button
               type="reset"
               variant="flat"
-              className="w-full sm:w-1/3 bg-gray-100 text-gray-700 font-semibold shadow-sm hover:bg-gray-200 text-lg transition-all"
+              className="w-full sm:w-1/3 bg-gray-100 text-gray-700 font-semibold shadow-sm hover:bg-gray-200 text-md transition-all"
               size="lg"
               radius="md"
             >
