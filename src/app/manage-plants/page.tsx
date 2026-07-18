@@ -197,7 +197,7 @@ export default function ManagePlantsPage() {
   <Image
     src={
       plant.image ||
-      "https://images.unsplash.com/photo-1416879598555-2272af5d7870?q=80&w=600&auto=format&fit=crop"
+      "/plant.jpg"
     }
     alt={plant.title}
     width={1000}
@@ -315,11 +315,11 @@ export default function ManagePlantsPage() {
 
           <Button
             slot="close"
-            color="danger"
+            variant="danger-soft"
             isLoading={deleteMutation.isPending}
             onPress={() => deleteMutation.mutate(plant._id)}
           >
-            Delete
+           Confirm Delete
           </Button>
 
         </AlertDialog.Footer>

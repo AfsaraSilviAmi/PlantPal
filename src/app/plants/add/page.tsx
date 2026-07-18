@@ -102,7 +102,7 @@ export default function AddPlantPage() {
 
       formRef.current?.reset();
 
-      router.push("/explore");
+     
     } catch (error) {
       console.error(error);
       toast.error("Failed to add plant.");

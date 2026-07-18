@@ -107,7 +107,7 @@ export default function PlantDetailsPage() {
 
   const imageUrl = plant.image && plant.image.trim() !== ""
     ? plant.image
-    : "https://images.unsplash.com/photo-1416879598555-2272af5d7870?q=80&w=600&auto=format&fit=crop";
+    : "/plant.jpg";
 
   const getDifficultyClass = (difficulty: string) => {
   switch (difficulty.toLowerCase()) {

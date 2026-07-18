@@ -15,9 +15,8 @@ interface PlantCardProps {
 
 export function PlantCard({ plant, index }: PlantCardProps) {
   // Beautiful placeholder if image is missing
-  const imageUrl = plant.image && plant.image.trim() !== ""
-    ? plant.image
-    : "https://images.unsplash.com/photo-1416879598555-2272af5d7870?q=80&w=600&auto=format&fit=crop";
+ const imageUrl =
+  plant.image?.trim() || "/plant.jpg";
 
   const getDifficultyColor = (diff: string) => {
     switch (diff.toLowerCase()) {
@@ -33,6 +32,7 @@ export function PlantCard({ plant, index }: PlantCardProps) {
   };
 const displayPrice = plant.price ?? 15.99;
 const displayRating = plant.rating ?? 4.5;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ const displayRating = plant.rating ?? 4.5;
           height={1000}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1416879598555-2272af5d7870?q=80&w=600&auto=format&fit=crop";
+            (e.target as HTMLImageElement).src = "/plant.jpg";
           }}
         />
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
