@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PlantCard } from "@/components/plants/plant-card";
 import { PlantSkeleton } from "@/components/plants/plant-skeleton";
 import { PlantToolbar } from "@/components/plants/plant-toolbar";
 import { Plant } from "@/types";
-import { Button } from "@heroui/react";
+import { Button, Pagination } from "@heroui/react";
 import Link from "next/link";
 import { FaLeaf } from "react-icons/fa";
 
@@ -31,6 +31,8 @@ export default function PlantsPage() {
   const [category, setCategory] = useState("All Categories");
   const [difficulty, setDifficulty] = useState("All Difficulties");
   const [sortBy, setSortBy] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const plantsPerPage = 8;
 
   const filteredAndSortedPlants = useMemo(() => {
     if (!plants) return [];
@@ -85,14 +87,25 @@ export default function PlantsPage() {
 
     return result;
   }, [plants, searchQuery, category, difficulty, sortBy]);
+const totalPages = Math.ceil(
+  filteredAndSortedPlants.length / plantsPerPage
+);
 
+const startIndex = (currentPage - 1) * plantsPerPage;
+
+const currentPlants = filteredAndSortedPlants.slice(
+  startIndex,
+  startIndex + plantsPerPage
+);
   const clearFilters = () => {
     setSearchQuery("");
     setCategory("All Categories");
     setDifficulty("All Difficulties");
     setSortBy("");
   };
-
+useEffect(() => {
+  setCurrentPage(1);
+}, [searchQuery, category, difficulty, sortBy]);
   return (
     <div className="min-h-screen bg-background-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -120,7 +133,28 @@ export default function PlantsPage() {
             setSortBy={setSortBy}
           />
         </div>
-
+{filteredAndSortedPlants.length > 0 && (
+  <div className="mb-6">
+    <p className="text-sm text-gray-600">
+      Showing{" "}
+      <span className="font-semibold">
+        {startIndex + 1}
+      </span>
+      {" - "}
+      <span className="font-semibold">
+        {Math.min(
+          startIndex + plantsPerPage,
+          filteredAndSortedPlants.length
+        )}
+      </span>
+      {" "}of{" "}
+      <span className="font-semibold">
+        {filteredAndSortedPlants.length}
+      </span>
+      {" "}plants
+    </p>
+  </div>
+)}
         {/* Grid Section */}
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -155,7 +189,7 @@ export default function PlantsPage() {
           </div>
         ) : filteredAndSortedPlants.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-            {filteredAndSortedPlants.map((plant, index) => (
+            {currentPlants.map((plant, index) => (
               <div key={plant._id} className="h-full">
                 <PlantCard plant={plant} index={index} />
               </div>
@@ -181,7 +215,44 @@ export default function PlantsPage() {
             </Button>
           </div>
         )}
+<div className="mt-8 flex flex-col items-center gap-3">
+  <div className="my-8 flex justify-center">
+  <Pagination>
+    <Pagination.Content>
+      <Pagination.Item>
+        <Pagination.Previous
+          isDisabled={currentPage === 1}
+          onPress={() => setCurrentPage((p) => p - 1)}
+        >
+          <Pagination.PreviousIcon />
+          <span>Previous</span>
+        </Pagination.Previous>
+      </Pagination.Item>
 
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <Pagination.Item key={page}>
+          <Pagination.Link
+            isActive={page === currentPage}
+            onPress={() => setCurrentPage(page)}
+          >
+            {page}
+          </Pagination.Link>
+        </Pagination.Item>
+      ))}
+
+      <Pagination.Item>
+        <Pagination.Next
+          isDisabled={currentPage === totalPages}
+          onPress={() => setCurrentPage((p) => p + 1)}
+        >
+          <span>Next</span>
+          <Pagination.NextIcon />
+        </Pagination.Next>
+      </Pagination.Item>
+    </Pagination.Content>
+  </Pagination>
+</div>
+</div>
       </div>
     </div>
   );

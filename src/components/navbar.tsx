@@ -13,7 +13,7 @@ const navLinks = [
   },
   {
     href: "/plants",
-    label: "Plants",
+    label: "All Plants",
   },
   {
     href: "/about",
