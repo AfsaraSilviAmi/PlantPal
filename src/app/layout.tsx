@@ -5,6 +5,7 @@ import { Providers } from "@/components/providers";
 import NavBar from "@/components/navbar";
 import { ToastContainer } from "react-toastify";
 import AIChat from "@/components/AIChat";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Providers>
           <NavBar />
           {children}
+          <Footer></Footer>
         </Providers>
         <AIChat></AIChat>
         <ToastContainer></ToastContainer>
