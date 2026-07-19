@@ -384,29 +384,24 @@ export default function RecommendationPage() {
 
 
           <Button
-
-            onPress={getRecommendations}
-
-            className="
-            mt-10
-            bg-primary-green
-            text-white
-            rounded-full
-            px-10
-            "
-
-          >
-
-            {
-              loading
-              ?
-              "Finding Plants..."
-              :
-              "Get AI Recommendations Below 🌱"
-            }
-
-
-          </Button>
+  onPress={getRecommendations}
+  className="
+    mt-10
+    w-full
+    sm:w-auto
+    bg-primary-green
+    text-white
+    rounded-full
+    px-7
+    py-3
+    whitespace-normal
+    text-center
+  "
+>
+  {loading
+    ? "Finding Plants..."
+    : "Get AI Recommendations Below 🌱"}
+</Button>
 
 
 
