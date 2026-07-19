@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertDialog, Button, Card, Skeleton } from "@heroui/react";
 import { Plant } from "@/types";
@@ -27,8 +27,18 @@ export default function ManagePlantsPage() {
     queryKey: ["my-plants", session?.user?.email],
     enabled: !!session?.user?.email,
     queryFn: async () => {
+      const {data:tokenData} = await authClient.token()
+
       const res = await fetch(
-        `${baseUrl}/api/my-plants/${session!.user.email}`
+        `${baseUrl}/api/my-plants/${session!.user.email}`,
+         {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+      }
+
+        
       );
 
       if (!res.ok) {
@@ -41,10 +51,17 @@ export default function ManagePlantsPage() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
+     const {data:tokenData} = await authClient.token()
+
       const res = await fetch(
         `${baseUrl}/api/plants/${id}?email=${session?.user.email}`,
         {
           method: "DELETE",
+          headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+
         }
       );
 
