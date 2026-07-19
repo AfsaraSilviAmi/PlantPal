@@ -23,6 +23,10 @@ const navLinks = [
     href: "/contact",
     label: "Contact",
   },
+  {
+    href: "/recommendations",
+    label: "AI Recommendations",
+  },
 ];
 
 export default function NavBar() {
