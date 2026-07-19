@@ -8,7 +8,13 @@ import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
 export default function Hero() {
-    const { data: session } = authClient.useSession();
+   const { data: session } = authClient.useSession();
+
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
     const heroImages = [
 "/plant-hero.jpg",
 "/hero2.jpg",
@@ -84,7 +90,7 @@ max-w-xl
   </Button>
 </Link>
 
-          {session && (
+          {mounted && session && (
   <Link href="/plants/add">
     <Button
       variant="outline"

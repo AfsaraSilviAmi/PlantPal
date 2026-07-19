@@ -2,9 +2,7 @@
 
 import { Plant } from "@/types";
 import { PlantCard } from "@/components/plants/plant-card";
-import { Button } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 const fetchFeaturedPlants = async (): Promise<Plant[]> => {
