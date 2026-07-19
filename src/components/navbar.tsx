@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Avatar, Button, Dropdown } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-import Image from "next/image";
+
 
 const navLinks = [
   {
