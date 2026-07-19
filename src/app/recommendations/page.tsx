@@ -402,7 +402,7 @@ export default function RecommendationPage() {
               ?
               "Finding Plants..."
               :
-              "Get AI Recommendations 🌱"
+              "Get AI Recommendations Below 🌱"
             }
 
 

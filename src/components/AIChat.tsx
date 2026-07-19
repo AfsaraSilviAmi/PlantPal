@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import { motion } from "framer-motion";
 export default function AIChat() {
   const [open, setOpen] = useState(false);
   const defaultMessage = {
@@ -160,12 +160,43 @@ const sendMessage = async () => {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary-green text-white shadow-xl text-3xl z-50"
-      >
-        🌿
-      </button>
+     <motion.button
+  onClick={() => setOpen(!open)}
+  className="
+fixed
+bottom-6
+right-6
+h-16
+w-16
+rounded-full
+bg-primary-green
+text-white
+shadow-[0_0_25px_rgba(89,183,106,.45)]
+text-3xl
+z-50
+flex
+items-center
+justify-center
+"
+  animate={{
+    y: [0, -8, 0],
+    scale: [1, 1.06, 1],
+  }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  whileHover={{
+    scale: 1.15,
+    rotate: -10,
+  }}
+  whileTap={{
+    scale: 0.9,
+  }}
+>
+  🌿
+</motion.button>
 
       {open && (
         <div className="
