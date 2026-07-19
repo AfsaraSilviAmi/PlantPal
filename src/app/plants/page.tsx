@@ -177,15 +177,14 @@ useEffect(() => {
             <p className="text-gray-500 max-w-md mb-8">
               It looks like our greenhouse is currently empty. Be the first to contribute to the PlantPal community by sharing a plant you love!
             </p>
-            <Button
-              as={Link}
-              href="/plants/add"
-              className="bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md px-8"
-              size="lg"
-              radius="full"
-            >
-              Add a Plant
-            </Button>
+            <Link href="/plants/add">
+  <Button
+    className="bg-primary-green rounded-full text-white font-bold shadow-lg shadow-primary-green/30"
+    size="lg"
+  >
+    Add Plant
+  </Button>
+</Link>
           </div>
         ) : filteredAndSortedPlants.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
@@ -207,9 +206,9 @@ useEffect(() => {
             </p>
             <Button
               onPress={clearFilters}
-              className="bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md px-8"
+              className="bg-primary-green rounded-full text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md px-8"
               size="lg"
-              radius="full"
+              
             >
               Clear Filters
             </Button>

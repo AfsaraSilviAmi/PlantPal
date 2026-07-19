@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Form, TextField, Label, Input, FieldError, Button, Link as NextUILink } from "@heroui/react";
+import { Form, TextField, Label, Input, FieldError, Button } from "@heroui/react";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Icon } from "@iconify/react";
@@ -150,11 +150,10 @@ export default function LoginPage() {
         <div className="flex flex-col gap-3 mt-2">
           <Button
             type="submit"
-            isLoading={isLoading}
-            isDisabled={isDemoLoading}
+            isDisabled={isLoading || isDemoLoading}
             className="w-full bg-primary-green text-white font-semibold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md transition-all"
             size="lg"
-            radius="md"
+            
           >
             Log In
           </Button>
@@ -162,12 +161,11 @@ export default function LoginPage() {
           <Button
             type="button"
             onPress={handleDemoLogin}
-            isLoading={isDemoLoading}
-            isDisabled={isLoading}
-            variant="flat"
+             isDisabled={isLoading || isDemoLoading}
+           
             className="w-full bg-primary-dark text-white font-semibold shadow-md hover:bg-[#12311d] transition-all"
             size="lg"
-            radius="md"
+           
           >
             Demo Login
           </Button>
@@ -192,11 +190,14 @@ export default function LoginPage() {
 
       <div className="text-center mt-8">
         <p className="text-gray-600 text-sm">
-          Don't have an account?{" "}
-          <NextUILink as={Link} href="/register" className="text-primary-green font-semibold hover:text-[#4aa35b] transition-colors">
-            Sign up
-          </NextUILink>
-        </p>
+  Don't have an account?{" "}
+  <Link
+    href="/register"
+    className="text-primary-green font-semibold hover:underline"
+  >
+    Sign up
+  </Link>
+</p>
       </div>
     </AuthLayout>
   );

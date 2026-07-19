@@ -325,19 +325,20 @@ export default function ManagePlantsPage() {
 
           <Button
             slot="close"
-            variant="flat"
+            variant="outline"
+          
           >
             Cancel
           </Button>
 
           <Button
-            slot="close"
-            variant="danger-soft"
-            isLoading={deleteMutation.isPending}
-            onPress={() => deleteMutation.mutate(plant._id)}
-          >
-           Confirm Delete
-          </Button>
+  slot="close"
+  variant="danger-soft"
+  isDisabled={deleteMutation.isPending}
+  onPress={() => deleteMutation.mutate(plant._id)}
+>
+  {deleteMutation.isPending ? "Deleting..." : "Confirm Delete"}
+</Button>
 
         </AlertDialog.Footer>
 

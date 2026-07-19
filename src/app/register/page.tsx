@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Form, TextField, Label, Input, FieldError, Button, Link as NextUILink } from "@heroui/react";
+import { Form, TextField, Label, Input, FieldError, Button} from "@heroui/react";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Icon } from "@iconify/react";
@@ -154,10 +154,10 @@ export default function RegisterPage() {
 
         <Button
           type="submit"
-          isLoading={isLoading}
+          isDisabled={isLoading}
           className="w-full bg-primary-green text-white font-semibold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 mt-2 text-md transition-all"
           size="lg"
-          radius="md"
+         
         >
           Create Account
         </Button>
@@ -182,9 +182,12 @@ export default function RegisterPage() {
       <div className="text-center mt-8">
         <p className="text-gray-600 text-sm">
           Already have an account?{" "}
-          <NextUILink as={Link} href="/login" className="text-primary-green font-semibold hover:text-[#4aa35b] transition-colors">
-            Login
-          </NextUILink>
+         <Link
+  href="/login"
+  className="text-primary-green font-semibold hover:text-[#4aa35b] transition-colors"
+>
+  Login
+</Link>
         </p>
       </div>
     </AuthLayout>

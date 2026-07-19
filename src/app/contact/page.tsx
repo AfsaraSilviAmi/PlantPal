@@ -168,11 +168,11 @@ const handleSubmit = (e: React.FormEvent) => {
     </label>
 
     <Input
-      radius="lg"
-      size="lg"
-      variant="bordered"
+    
+    
+      
       placeholder="John Doe"
-      className="w-full"
+      className="w-full rounded-lg"
       value={form.name}
       onChange={(e) =>
         setForm({ ...form, name: e.target.value })
@@ -187,10 +187,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
     <Input
       type="email"
-      radius="lg"
-      size="lg"
-      className="w-full"
-      variant="bordered"
+      className="w-full rounded-lg"
       placeholder="john@email.com"
       value={form.email}
       onChange={(e) =>
@@ -205,10 +202,8 @@ const handleSubmit = (e: React.FormEvent) => {
     </label>
 
     <Input
-      radius="lg"
-      size="lg"
-      variant="bordered"
-      className="w-full"
+     
+      className="w-full rounded-lg"
       placeholder="How can we help?"
       value={form.subject}
       onChange={(e) =>

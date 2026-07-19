@@ -8,7 +8,7 @@ Built with **Next.js, TypeScript, Express.js, MongoDB, Better Auth, and Groq AI*
 
 ## 🌐 Live Demo
 
-🔗 https://your-live-link.vercel.app
+🔗 https://plant-pal-ochre.vercel.app/
 
 
 ---
@@ -149,7 +149,10 @@ Features include
 ## Clone
 
 ```bash
-git clone https://github.com/yourusername/plantpal-ai.git
+git clone https://github.com/AfsaraSilviAmi/PlantPal.git
+```
+```bash
+git clone https://github.com/AfsaraSilviAmi/PlantPal-Server.git
 ```
 
 ## Client

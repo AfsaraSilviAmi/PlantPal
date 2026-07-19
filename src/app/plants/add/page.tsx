@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { motion } from "framer-motion";
+import Loading from "@/app/loading";
 
 export default function AddPlantPage() {
   const router = useRouter();
@@ -33,9 +34,10 @@ export default function AddPlantPage() {
 
   if (isPending || !session) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background-cream">
-        <div className="w-8 h-8 border-4 border-primary-green border-t-transparent rounded-full animate-spin"></div>
-      </div>
+      <div>
+        <Loading></Loading>
+       </div>
+      
     );
   }
 
@@ -186,7 +188,7 @@ const {data:tokenData} = await authClient.token()
             >
               <Label className="text-gray-700 font-semibold text-sm">Category</Label>
               <Select.Trigger className="border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors">
-                <Select.Value placeholder="Select a category" />
+                <Select.Value />
               </Select.Trigger>
               <Select.Popover>
                 <ListBox>
@@ -207,7 +209,7 @@ const {data:tokenData} = await authClient.token()
             >
               <Label className="text-gray-700 font-semibold text-sm">Difficulty</Label>
               <Select.Trigger className="border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors">
-                <Select.Value placeholder="Select care difficulty" />
+                <Select.Value />
               </Select.Trigger>
               <Select.Popover>
                 <ListBox>
@@ -231,7 +233,7 @@ const {data:tokenData} = await authClient.token()
             >
               <Label className="text-gray-700 font-semibold text-sm">Watering Frequency</Label>
               <Select.Trigger className="border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors">
-                <Select.Value placeholder="How often?" />
+                <Select.Value />
               </Select.Trigger>
               <Select.Popover>
                 <ListBox>
@@ -252,7 +254,7 @@ const {data:tokenData} = await authClient.token()
             >
               <Label className="text-gray-700 font-semibold text-sm">Sunlight Requirements</Label>
               <Select.Trigger className="border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors">
-                <Select.Value placeholder="Select sunlight" />
+                <Select.Value />
               </Select.Trigger>
               <Select.Popover>
                 <ListBox>
@@ -403,10 +405,9 @@ const {data:tokenData} = await authClient.token()
             <Label className="text-gray-700 font-semibold text-sm">Full Description</Label>
             <TextArea
               placeholder="Provide a detailed care guide, history, or interesting facts..."
-              minRows={5}
-              classNames={{
-                inputWrapper: "border-gray-200 hover:border-primary-green focus-within:!border-primary-green rounded-xl transition-colors shadow-none",
-              }}
+             
+             className="min-h-20"
+          
             />
             <FieldError className="text-red-500 text-xs mt-1" />
           </TextField>
@@ -415,19 +416,19 @@ const {data:tokenData} = await authClient.token()
           <div className="flex flex-col sm:flex-row gap-4 mt-4 pt-6 border-t border-gray-100">
             <Button
               type="submit"
-              isLoading={isLoading}
+              isDisabled={isLoading}
               className="w-full sm:w-2/3 bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md transition-all"
               size="lg"
-              radius="md"
+             
             >
               Add Plant
             </Button>
             <Button
               type="reset"
-              variant="flat"
+              variant="outline"
               className="w-full sm:w-1/3 bg-gray-100 text-gray-700 font-semibold shadow-sm hover:bg-gray-200 text-md transition-all"
               size="lg"
-              radius="md"
+
             >
               Reset
             </Button>

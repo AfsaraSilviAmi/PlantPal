@@ -91,16 +91,15 @@ export default function PlantDetailsPage() {
         <p className="text-gray-500 max-w-md text-center mb-8">
           We couldn't find the plant you were looking for. It might have been removed or the link is incorrect.
         </p>
-        <Button
-          as={Link}
-          href="/plants"
-          startContent={<FaArrowLeft />}
-          className="bg-primary-green text-white font-bold shadow-lg shadow-primary-green/20 hover:shadow-primary-green/30 text-md px-8"
-          size="lg"
-          radius="full"
-        >
-          Back to All Plants
-        </Button>
+       <Link href="/plants">
+  <Button
+    className="bg-primary-green rounded-full text-white font-bold"
+    size="lg"
+  >
+    <FaArrowLeft className="mr-2" />
+    Back to All Plants
+  </Button>
+</Link>
       </div>
     );
   }

@@ -83,9 +83,9 @@ export default function CategoryStatistics() {
                   cx="50%"
                   cy="50%"
                   outerRadius={150}
-                  label={({ category, percent }) =>
-                    `${category} ${(percent! * 100).toFixed(0)}%`
-                  }
+                  label={(props: any) =>
+  `${props.name} ${((props.percent ?? 0) * 100).toFixed(0)}%`
+}
                 >
                   {data.map((entry, index) => (
                     <Cell

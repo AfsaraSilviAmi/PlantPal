@@ -209,8 +209,8 @@ export default function AboutPage() {
 
           <Link href="/plants">
             <Button
-              radius="full"
-              className="bg-white text-primary-green font-bold px-10"
+             
+              className="bg-white text-primary-green font-bold px-10 rounded-full"
             >
               Start Exploring
             </Button>
